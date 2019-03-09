@@ -10,24 +10,33 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+using namespace RAPT;
+using namespace rosic;
 
+// move to TestTools.cpp...maybe rename wo waveLoad or wavRead...maybe have wavWrite too, maybe 
+// move to rosic..or - no - this function is specific to this project (it uses the project-specific
+// sample path - but mayb factor out an rsWavRead that takes a path as argument (and not just a 
+// name)
 std::vector<double> loadSample(const std::string& name, double* sampleRate = nullptr)
 {
+  // load sample data into temporary buffer:
   std::string sampleDir = "../../../../Data/Samples/";
   std::string path      = sampleDir + name + ".wav";
-
   int numChannels = 0, numFrames = 0, iSampleRate = 0;
-  double** data = rosic::readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
+  double** data = readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
 
+  // assign sample-rate, if variable is passed:
   if(sampleRate != nullptr)
     *sampleRate = (double) iSampleRate;
 
-  std::vector<double> v;
-
-  // copy data to vector, clean up memory..
-
-
+  // copy data into std::vector and clean up memory:
+  std::vector<double> v(numFrames);
+  RAPT::rsArray::copyBuffer(data[0], &v[0], numFrames);
+  MatrixTools::rsDeAllocateMatrix(data, numChannels, numFrames);
   return v;
+
+  // todo: rename rosic::rsArray ...maybe to rsDynamicArray..or remove the class from rosic or 
+  // replace by RAPT class
 }
 
 
@@ -39,7 +48,7 @@ int main (int argc, char* argv[])
   std::vector<double> x;
   double fs;
 
-  loadSample("bell_2a", &fs);
+  x = loadSample("bell_2a", &fs);
 
 
   // todo: check for memleaks (maybe move the memleak checking code to rosic)
