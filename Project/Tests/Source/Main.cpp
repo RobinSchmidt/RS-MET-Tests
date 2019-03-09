@@ -63,9 +63,24 @@ int main (int argc, char* argv[])
   std::vector<double> x;
   double fs;
 
-  x = loadSample("bell_2a", &fs);
+  //x = loadSample("bell_2a", &fs);
 
-  testHarmonicResynthesis("bell_2a");
+  testHarmonicResynthesis("bell_light_1");
+  // very bad artifacts - cycle-lengths alternate between 40 and 50 cycles - but it's an inharmonic
+  // spectrum (lowest freq around 1 kHz) ..maybe try more harmonic sounds first..
+
+
+  //testHarmonicResynthesis("bell_2a");
+  // we get a crash with this - it seems to be not safe to assume that the initial and final 
+  // sections are shorter than one cycle...well...in particular, the final section...maybe 
+  // when computing the maxLength, we cannot just use the differences of the cycle-marks but
+  // must prepend 0 and append N-1 and *then* take the difference and find the maximum
+  // ..nope - that doesn'T help - the final section is longe than the blockSize *after* 
+  // stretching 
+  // scenario: last full cycle is very short and final incomplete cycle very long - now the
+  // final incomplete cycle gets stretched by the factor determined by the short cycle, i.e.
+  // it gets longer - it may happen that it becomes longer than the blockSize - the same is true
+  // for the first full cycle whene there's a long incomplete one before it.
 
 
 
