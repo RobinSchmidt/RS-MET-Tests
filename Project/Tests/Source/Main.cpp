@@ -39,6 +39,10 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
   // replace by RAPT class
 }
 
+// todo: 
+// -move HarmonicAnalyzer and SinusoidalSynthesizer to RAPT
+// -maybe create an rs_tests juce module that contains code tha is needed here and in the test
+//  project of the main RS-MET repo
 
 
 //==============================================================================
