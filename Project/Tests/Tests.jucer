@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="jNbQvd" name="Tests" displaySplashScreen="1" reportAppUsage="1"
+              splashScreenColour="Dark" projectType="consoleapp" version="1.0.0"
+              bundleIdentifier="com.yourcompany.NewProject" includeBinaryInAppConfig="1"
+              cppLanguageStandard="11" companyCopyright="" jucerVersion="5.2.0">
+  <MAINGROUP id="CUZTt8" name="Tests">
+    <GROUP id="{9D6FC012-FDEA-B506-96A3-33E47579AA64}" name="Source">
+      <FILE id="IgKNsd" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2015 targetFolder="Builds/VisualStudio2015" windowsTargetPlatformVersion="8.1"
+            extraDefs="DONT_SET_USING_JUCE_NAMESPACE">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="3" generateManifest="1" winArchitecture="x64"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="0" isDebug="1" optimisation="1" targetName="Tests"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       debugInformationFormat="ProgramDatabase" enablePluginBinaryCopyStep="0"
+                       linkTimeOptimisation="1" isDebug="0" optimisation="3" targetName="Tests"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="rapt" path="../../../RS-MET/Libraries/JUCE/modules"/>
+        <MODULEPATH id="rosic" path="../../../RS-MET/Libraries/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2015>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="rapt" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="rosic" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
