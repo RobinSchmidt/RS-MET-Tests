@@ -65,7 +65,9 @@ int main (int argc, char* argv[])
 
   //x = loadSample("bell_2a", &fs);
 
+  testHarmonicResynthesis("flute-C-octave0");
   testHarmonicResynthesis("flute-C-octave1");
+  testHarmonicResynthesis("flute-C-octave2");
 
 
   //testHarmonicResynthesis("bell_light_1");
