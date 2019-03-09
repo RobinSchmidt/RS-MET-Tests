@@ -496,6 +496,9 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\MiscAudio\WindowFunctions.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\HarmonicAnalyzer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\MiscUnfinished.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -503,6 +506,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalModel.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalSynthesizer.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\Spectrogram.cpp">
@@ -1807,8 +1813,15 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rosic\rosic.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rs_testing\Experiments\MiscExperiments.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rs_testing\rs_testing.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_rapt.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_rosic.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_rs_testing.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\AudioBasics\AudioBasics.h"/>
@@ -1937,9 +1950,11 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\MiscAudio\SlewRateLimiter.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\MiscAudio\SlewRateLimiterLinear.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\MiscAudio\WindowFunctions.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\HarmonicAnalyzer.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\MiscUnfinished.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SampleManipulation.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalModel.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalSynthesizer.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\Spectrogram.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Unfinished.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Visualization\Graphics\AlphaMask.h"/>
@@ -2411,6 +2426,8 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rosic\unfinished\rosic_QuadSource.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rosic\rosicOld.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rosic\rosic.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rs_testing\Experiments\MiscExperiments.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rs_testing\rs_testing.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>

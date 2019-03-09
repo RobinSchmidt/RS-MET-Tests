@@ -44,9 +44,7 @@ void testHarmonicResynthesis(const std::string& name)
 {
   double fs;
   std::vector<double> x = loadSample(name, &fs);
-
-
-
+  testHarmonicResynthesis(name, x, fs, true, true);
   int dummy = 0;
 }
 

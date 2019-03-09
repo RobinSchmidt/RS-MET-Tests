@@ -23,12 +23,14 @@
       <MODULEPATHS>
         <MODULEPATH id="rapt" path="../../../RS-MET/Libraries/JUCE/modules"/>
         <MODULEPATH id="rosic" path="../../../RS-MET/Libraries/JUCE/modules"/>
+        <MODULEPATH id="rs_testing" path="../../../RS-MET/Libraries/JUCE/modules"/>
       </MODULEPATHS>
     </VS2015>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="rapt" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="rosic" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="rs_testing" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
   <JUCEOPTIONS/>
 </JUCERPROJECT>

@@ -16,6 +16,7 @@
 
 #include <rapt/rapt.h>
 #include <rosic/rosic.h>
+#include <rs_testing/rs_testing.h>
 
 
 #if ! DONT_SET_USING_JUCE_NAMESPACE
