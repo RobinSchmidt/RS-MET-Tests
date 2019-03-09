@@ -39,6 +39,19 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
   // replace by RAPT class
 }
 
+
+void testHarmonicResynthesis(const std::string& name)
+{
+  double fs;
+  std::vector<double> x = loadSample(name, &fs);
+
+
+
+  int dummy = 0;
+}
+
+
+
 // todo: 
 // -move HarmonicAnalyzer and SinusoidalSynthesizer to RAPT
 // -maybe create an rs_tests juce module that contains code tha is needed here and in the test
@@ -53,6 +66,9 @@ int main (int argc, char* argv[])
   double fs;
 
   x = loadSample("bell_2a", &fs);
+
+  testHarmonicResynthesis("bell_2a");
+
 
 
   // todo: check for memleaks (maybe move the memleak checking code to rosic)
