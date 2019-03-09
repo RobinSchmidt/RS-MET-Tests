@@ -10,3 +10,9 @@ metal_ring2.wav
 
 The Open Path Music Collection V1:
 prayer bowl Db.wav
+
+
+The Open Path Music Collection V2:
+flute-C-octave0
+flute-C-octave1.wav
+flute-C-octave2.wav

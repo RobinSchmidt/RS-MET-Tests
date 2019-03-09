@@ -65,7 +65,10 @@ int main (int argc, char* argv[])
 
   //x = loadSample("bell_2a", &fs);
 
-  testHarmonicResynthesis("bell_light_1");
+  testHarmonicResynthesis("flute-C-octave1");
+
+
+  //testHarmonicResynthesis("bell_light_1");
   // very bad artifacts - cycle-lengths alternate between 40 and 50 cycles - but it's an inharmonic
   // spectrum (lowest freq around 1 kHz) ..maybe try more harmonic sounds first..
 
