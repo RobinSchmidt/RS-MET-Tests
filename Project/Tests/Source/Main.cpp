@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic startup code for a Juce application.
-
-  ==============================================================================
-*/
-
 #include "../JuceLibraryCode/JuceHeader.h"
 
 using namespace RAPT;
@@ -39,7 +29,6 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
   // replace by RAPT class
 }
 
-
 void testHarmonicResynthesis(const std::string& name)
 {
   double fs;
@@ -48,26 +37,28 @@ void testHarmonicResynthesis(const std::string& name)
   int dummy = 0;
 }
 
+//-------------------------------------------------------------------------------------------------
 
-
-// todo: 
-// -move HarmonicAnalyzer and SinusoidalSynthesizer to RAPT
-// -maybe create an rs_tests juce module that contains code tha is needed here and in the test
-//  project of the main RS-MET repo
-
-
-//==============================================================================
 int main (int argc, char* argv[])
 {
 
-  std::vector<double> x;
-  double fs;
+  //std::vector<double> x;
+  //double fs;
 
   //x = loadSample("bell_2a", &fs);
 
   testHarmonicResynthesis("flute-C-octave0");
   testHarmonicResynthesis("flute-C-octave1");
   testHarmonicResynthesis("flute-C-octave2");
+  // the anti-alias algo, if used, removes everything above the 5th harmonic - why would it remove 
+  // valid harmonic content? maybe some isolated cycles get stretched a lot more than others,
+  // causing the harmonic to be removed? maybe have different sorts of anti-alias options
+  // some of the subharmonic (at 500 Hz) and its harmonics show up in the resynthesized signal.
+  // maybe the subharmonic shows up as alternating DC? removing the DC component reduces the 500Hz
+  // component but does not eliminate it completely. looking at the model data, it seems like there 
+  // is some frequency modulation present at the start of the first harmonic - maybe this frequency
+  // modulation somehow "encodes" the 500Hz component? ..there's also amplitude modulation - we 
+  // need some plots...
 
 
   //testHarmonicResynthesis("bell_light_1");
@@ -80,12 +71,12 @@ int main (int argc, char* argv[])
   // sections are shorter than one cycle...well...in particular, the final section...maybe 
   // when computing the maxLength, we cannot just use the differences of the cycle-marks but
   // must prepend 0 and append N-1 and *then* take the difference and find the maximum
-  // ..nope - that doesn'T help - the final section is longe than the blockSize *after* 
+  // ..nope - that doesn't help - the final section is longer than the blockSize *after* 
   // stretching 
   // scenario: last full cycle is very short and final incomplete cycle very long - now the
   // final incomplete cycle gets stretched by the factor determined by the short cycle, i.e.
   // it gets longer - it may happen that it becomes longer than the blockSize - the same is true
-  // for the first full cycle whene there's a long incomplete one before it.
+  // for the first full cycle when there's a long incomplete one before it.
 
 
 
