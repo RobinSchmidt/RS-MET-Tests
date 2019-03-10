@@ -268,6 +268,9 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\DebugTools.cpp">
       <Filter>Juce Modules\rapt\Basics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\GNUPlotter.cpp">
+      <Filter>Juce Modules\rapt\Basics</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\Plotting.cpp">
       <Filter>Juce Modules\rapt\Basics</Filter>
     </ClCompile>
@@ -650,6 +653,9 @@
       <Filter>Juce Modules\rapt\Visualization</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\rapt.cpp">
+      <Filter>Juce Modules\rapt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\rapt_templates.cpp">
       <Filter>Juce Modules\rapt</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rosic\_third_party\angelscript\as_arrayobject.cpp">
@@ -1933,6 +1939,9 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_rapt.cpp">
       <Filter>Juce Library Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_rapt_templates.cpp">
+      <Filter>Juce Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_rosic.cpp">
       <Filter>Juce Library Code</Filter>
     </ClCompile>
@@ -1954,6 +1963,9 @@
       <Filter>Juce Modules\rapt\Basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\DebugTools.h">
+      <Filter>Juce Modules\rapt\Basics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\GNUPlotter.h">
       <Filter>Juce Modules\rapt\Basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\MacroDefinitions.h">

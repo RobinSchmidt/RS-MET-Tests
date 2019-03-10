@@ -1,3 +1,5 @@
+//#define RS_PLOTTING
+
 #include "../JuceLibraryCode/JuceHeader.h"
 
 using namespace RAPT;
@@ -29,11 +31,29 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
   // replace by RAPT class
 }
 
+
+template<class T>
+inline std::vector<T> rsExtractRange(std::vector<T>& v, size_t first, size_t last)
+{
+  rsAssert(last >= first && last < v.size(), "invalid range");
+  size_t N = last - first + 1;
+  std::vector<T> r(N);
+  RAPT::rsArray::copyBuffer(&v[first], &r[0], (int) N);
+  return r;
+}
+
+
 void testHarmonicResynthesis(const std::string& name)
 {
   double fs;
   std::vector<double> x = loadSample(name, &fs);
-  testHarmonicResynthesis(name, x, fs, true, true);
+
+  //x = rsExtractRange(x, 0, 20000); // analyze only a portion
+
+  testHarmonicResynthesis(name, x, fs, true, false); 
+  // plotting large wavefiles is not advisable
+
+
   int dummy = 0;
 }
 
@@ -41,15 +61,40 @@ void testHarmonicResynthesis(const std::string& name)
 
 int main (int argc, char* argv[])
 {
+  // maybe try some sample with vibrato...
 
-  //std::vector<double> x;
-  //double fs;
-
-  //x = loadSample("bell_2a", &fs);
-
+  /*
+  // sounds for which harmonic resynthesis works well:
+  testHarmonicResynthesis("Vla_CE.L (2)");
   testHarmonicResynthesis("flute-C-octave0");
   testHarmonicResynthesis("flute-C-octave1");
   testHarmonicResynthesis("flute-C-octave2");
+  */
+
+  // sounds for which harmonic resynthesis doesn't work:
+
+
+  //testHarmonicResynthesis("violin_bounce1");
+  // this hits an assert
+
+
+  //testHarmonicResynthesis("string-singlebow3");
+
+
+  //testHarmonicResynthesis("guitar-ac-E-octave0");
+  // takes long to compute (the synthesis takes long), shows buzzing artifacts
+  // i think, the cycle-marks may be wrong? ...hmm - but pitch-flattened version looks good (when
+  // taking only samples 0.20000, at least) - maybe the synthesis is to blame? -> plot the model
+  // the cycle-marks are at half-cycles - so we actually analyze each half-cycle separately - that
+  // could plausibly lead to the buzzing: because both half-cycles are different, the partial 
+  // amplitudes and phases alternate between the values for each half-cycle
+  // -> improve the fundamental frequency estimation algorithm and/or allow the user to set the 
+  // fundamental frequency (the freq to which the bandpass in the cycle-mark finder is tuned)
+  // ..actually, the pitch-flattened version is also wrong already in later sections of the signal
+  // -> plot cycle-marks for these problematic sections, maybe write the extracted fundamental
+  // on which the cycle-marks are based into a file, too
+
+
   // the anti-alias algo, if used, removes everything above the 5th harmonic - why would it remove 
   // valid harmonic content? maybe some isolated cycles get stretched a lot more than others,
   // causing the harmonic to be removed? maybe have different sorts of anti-alias options

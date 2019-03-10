@@ -1,11 +1,26 @@
 The samples in this folder are released under the creative commons license (see http://creativecommons.org/by/3.0/). They were collected and edited by Robin Schmidt (www.rs-met.com) and originate from:
 
 
+The Berklee Sampling Archive Volume 2:
+violin_bounce1
+
+
+The Berklee Sampling Archive Volume 5:
+femalevoice_aa_A3
+male_voice_aa_A2
+male_voice_oo_A2
+vocal_buzz_1
+whistle_3
+
+
+
 The Berklee Sampling Archive Volume 11:
 bell_2a.wav
 bell_light_1.wav
 keyring_2.wav
 metal_ring2.wav
+
+
 
 
 The Open Path Music Collection V1:
@@ -16,3 +31,11 @@ The Open Path Music Collection V2:
 flute-C-octave0
 flute-C-octave1.wav
 flute-C-octave2.wav
+
+
+The Open Path Music Collection V3:
+guitar-ac-E-octave0
+
+OLPC, Peiman Khosravi:
+string-singlebow3.wav
+Vla_CE.L (2).wav

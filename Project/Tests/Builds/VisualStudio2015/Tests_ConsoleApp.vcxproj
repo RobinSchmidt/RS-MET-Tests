@@ -160,6 +160,9 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\DebugTools.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\GNUPlotter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\Plotting.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -542,6 +545,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\rapt.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\rapt_templates.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rosic\_third_party\angelscript\as_arrayobject.cpp">
@@ -1820,6 +1826,7 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_rapt.cpp"/>
+    <ClCompile Include="..\..\JuceLibraryCode\include_rapt_templates.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_rosic.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_rs_testing.cpp"/>
   </ItemGroup>
@@ -1829,6 +1836,7 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\Basics.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\Constants.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\DebugTools.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\GNUPlotter.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\MacroDefinitions.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\Plotting.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Basics\SortAndSearch.h"/>
