@@ -52,7 +52,7 @@ void testHarmonicResynthesis(const std::string& name)
   double fs;
   std::vector<double> x = loadSample(name, &fs);
 
-  //x = rsExtractRange(x, 40000, 10000); // analyze only a portion
+  x = rsExtractRange(x, 0, 10000); // analyze only a portion
   bool plot = x.size() <= 20000;  // plotting large wavefiles is not advisable
 
 
@@ -69,6 +69,10 @@ int main (int argc, char* argv[])
 {
 
   // todo: 
+  // -plot the residual with the cycle-marks for sounds that show the buzz - maybe the buzz 
+  //  impulses are at the cycle-marks - if so, that could be an important hint
+  // -try different phase and amplitude interpolation schemes and/or introduce bidiractional 
+  //  smoothing filters
   // -the f0 trajectories show spikes at the ends - maybe we need a bandpass filter that rings 
   //  longer for isolating the fundamental - make the cycle-mark-finder settings available to user
   //  code - check, if we actually use the f0-zero-crossing algorithm
@@ -136,8 +140,10 @@ int main (int argc, char* argv[])
   // gets f0 totally wrong
 
 
-  //testHarmonicResynthesis("violin_bounce1");
+  testHarmonicResynthesis("violin_bounce1");
   // has buzzing artifact - also with cycle-correlation pitch detection
+  // one buzz impulse is 2389-2390, next at 3306 - yep, these locations are very close to the found
+  // cycle marks
 
 
 
@@ -165,6 +171,10 @@ int main (int argc, char* argv[])
   //testHarmonicResynthesis("bell_light_1");
   // very bad artifacts - cycle-lengths alternate between 40 and 50 cycles - but it's an inharmonic
   // spectrum (lowest freq around 1 kHz) ..maybe try more harmonic sounds first..
+  // fundamental at around 980Hz - detected at 450 with zero-crossings - better results with 
+  // cycle-correlation - but the resynthesized sound sounds more dirty than the original - this
+  // is in contrast to hamronic sounds which tend to sound cleaned up - maybe the harmonic 
+  // analysis should not be used for inharmonic material
 
 
   //testHarmonicResynthesis("bell_2a");
