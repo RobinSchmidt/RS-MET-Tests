@@ -16,6 +16,10 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
   std::string path      = sampleDir + name + ".wav";
   int numChannels = 0, numFrames = 0, iSampleRate = 0;
   double** data = readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
+  if(data == nullptr) {
+    rsError("File not found");
+    return std::vector<double>();
+  }
 
   // assign sample-rate, if variable is passed:
   if(sampleRate != nullptr)
@@ -48,10 +52,12 @@ void testHarmonicResynthesis(const std::string& name)
   double fs;
   std::vector<double> x = loadSample(name, &fs);
 
-  //x = rsExtractRange(x, 0, 20000); // analyze only a portion
+  //x = rsExtractRange(x, 40000, 10000); // analyze only a portion
+  bool plot = x.size() <= 20000;  // plotting large wavefiles is not advisable
 
-  testHarmonicResynthesis(name, x, fs, true, false); 
-  // plotting large wavefiles is not advisable
+
+  testHarmonicResynthesis(name, x, fs, true, plot); 
+
 
 
   int dummy = 0;
@@ -61,24 +67,79 @@ void testHarmonicResynthesis(const std::string& name)
 
 int main (int argc, char* argv[])
 {
+
+  // todo: 
+  // -the f0 trajectories show spikes at the ends - maybe we need a bandpass filter that rings 
+  //  longer for isolating the fundamental - make the cycle-mark-finder settings available to user
+  //  code - check, if we actually use the f0-zero-crossing algorithm
+  // -allow the user to set the fundamental frequency
+  // -improve frequency detection
   // maybe try some sample with vibrato...
 
-  /*
-  // sounds for which harmonic resynthesis works well:
-  testHarmonicResynthesis("Vla_CE.L (2)");
-  testHarmonicResynthesis("flute-C-octave0");
-  testHarmonicResynthesis("flute-C-octave1");
-  testHarmonicResynthesis("flute-C-octave2");
-  */
+
+
+
+
+
+
+  // sounds for which harmonic resynthesis works:
+  //testHarmonicResynthesis("Vla_CE.L (2)");
+  //testHarmonicResynthesis("flute-C-octave0");
+  //testHarmonicResynthesis("flute-C-octave1");
+
+  //testHarmonicResynthesis("flute-C-octave2");
+  // the anti-alias algo, if used, removes everything above the 5th harmonic - why would it remove 
+  // valid harmonic content? maybe some isolated cycles get stretched a lot more than others,
+  // causing the harmonic to be removed? maybe have different sorts of anti-alias options
+  // some of the subharmonic (at 500 Hz) and its harmonics show up in the resynthesized signal.
+  // maybe the subharmonic shows up as alternating DC? removing the DC component reduces the 500Hz
+  // component but does not eliminate it completely. looking at the model data, it seems like there 
+  // is some frequency modulation present at the start of the first harmonic - maybe this frequency
+  // modulation somehow "encodes" the 500Hz component? ..there's also amplitude modulation - we 
+  // need some plots...
+
+
+  //testHarmonicResynthesis("whistle_3");
+  // resynthesized sounds "cleaned up", residual is some sort of noise
+  // bandpass-settings: width=1.0, steepness=3, freq-range: 20-5000
+  // needs a somewhat wider width due to the frequency sweep
+
+
+  //testHarmonicResynthesis("femalevoice_aa_A3");
+  // resynthesized sounds somwhat synthetic but okay but actually the original already has that
+  // character, residual is really loud and weird - could there be phase errors in resynthesis?
+  // when using only the first 20000 samples, it hits an assert, 10000 samples works
+  // the residual looks like noise-pulses at the fundamental frequency. each pulse looks different
+  // but they occur at a regular rate - could these be caused by the sinc-interpolation? 
+  // -> changing the kernel length does not seem to make a big difference
+  // -actually, that sort of residual (a train of noisy pulses) seems to be typical also for other
+  //  input signals
+
+
+  //testHarmonicResynthesis("malevoice_oo_A2");
+
+  //testHarmonicResynthesis("malevoice_aa_A2");
+
+  //testHarmonicResynthesis("string-singlebow3");
+  // f0 is a mess, even when reducing the detection bandwidth - we really need to plot the 
+  // extracted fundamental
+  // ahh - but using CYCLE_CORRELATION works well
+
+
 
   // sounds for which harmonic resynthesis doesn't work:
 
 
+
+
+  //testHarmonicResynthesis("vocal_buzz_1");
+  // gets f0 totally wrong
+
+
   //testHarmonicResynthesis("violin_bounce1");
-  // this hits an assert
+  // has buzzing artifact - also with cycle-correlation pitch detection
 
 
-  //testHarmonicResynthesis("string-singlebow3");
 
 
   //testHarmonicResynthesis("guitar-ac-E-octave0");
@@ -93,17 +154,12 @@ int main (int argc, char* argv[])
   // ..actually, the pitch-flattened version is also wrong already in later sections of the signal
   // -> plot cycle-marks for these problematic sections, maybe write the extracted fundamental
   // on which the cycle-marks are based into a file, too
+  // plotting the cycle-length trajectory shows that the cycle-detections fails badly
+  // bandpass-settings: width=0.1, steepness=3, freq-range: 50-100 ..there's still buzz but much
+  //  less with these settings
 
 
-  // the anti-alias algo, if used, removes everything above the 5th harmonic - why would it remove 
-  // valid harmonic content? maybe some isolated cycles get stretched a lot more than others,
-  // causing the harmonic to be removed? maybe have different sorts of anti-alias options
-  // some of the subharmonic (at 500 Hz) and its harmonics show up in the resynthesized signal.
-  // maybe the subharmonic shows up as alternating DC? removing the DC component reduces the 500Hz
-  // component but does not eliminate it completely. looking at the model data, it seems like there 
-  // is some frequency modulation present at the start of the first harmonic - maybe this frequency
-  // modulation somehow "encodes" the 500Hz component? ..there's also amplitude modulation - we 
-  // need some plots...
+
 
 
   //testHarmonicResynthesis("bell_light_1");

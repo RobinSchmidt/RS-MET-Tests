@@ -7,8 +7,8 @@ violin_bounce1
 
 The Berklee Sampling Archive Volume 5:
 femalevoice_aa_A3
-male_voice_aa_A2
-male_voice_oo_A2
+malevoice_aa_A2
+malevoice_oo_A2
 vocal_buzz_1
 whistle_3
 
