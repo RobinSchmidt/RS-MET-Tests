@@ -52,12 +52,10 @@ void testHarmonicResynthesis(const std::string& name)
   double fs;
   std::vector<double> x = loadSample(name, &fs);
 
-  x = rsExtractRange(x, 0, 10000); // analyze only a portion
+  //x = rsExtractRange(x, 0, 10000); // analyze only a portion
   bool plot = x.size() <= 20000;  // plotting large wavefiles is not advisable
 
-
   testHarmonicResynthesis(name, x, fs, true, plot); 
-
 
 
   int dummy = 0;
@@ -70,7 +68,25 @@ int main (int argc, char* argv[])
 
   // todo: 
   // -plot the residual with the cycle-marks for sounds that show the buzz - maybe the buzz 
-  //  impulses are at the cycle-marks - if so, that could be an important hint
+  //  impulses are at the cycle-marks - if so, that could be an important hint - yep - that
+  //  seems to be indeed the case. or hmm - they are *close* to the marks but sometimes slightly
+  //  off - maybe that is also a hint?
+  // -could is be that at the marks, all partials "conspire" to produce an edge - this seems 
+  //  plausible because at those time-instants, the phase is exactly defined by the datapoints 
+  //  whereas in between, it is determined by what the interpolation produces..but that would be
+  //  weird because in the original signal, there is no such edge
+  //  ...well..actually - no - the time-stamps of the datapoints are actually in between the cycle
+  //  marks - so at the cycle-marks, we are halfway between two datapoints
+  // -switching the phase-interpolation algo in the synthesizer does not help, switching amplitude
+  //  interpolation to cubic also doesn't help
+  // -it seems to be the case that at the datapoints (i.e. in between the marks) the aggreement
+  //  between original and resynthesized is best and at the marks (in between the datapoints) it
+  //  is worst - which makes sense because in between the datapoints, the signal is determined
+  //  maximally by the interpolation scheme
+  // -maybe we need more datapoints to avoid phase-jumps? for example, we could use marks based
+  //  on upward and downward zero crossings
+  // -maybe at the marks, sometimes a phase jump occurs for certain partials because the wrapped
+  //  interpolation of the phase selects different branches before and after the mark?
   // -try different phase and amplitude interpolation schemes and/or introduce bidiractional 
   //  smoothing filters
   // -the f0 trajectories show spikes at the ends - maybe we need a bandpass filter that rings 
@@ -82,14 +98,11 @@ int main (int argc, char* argv[])
 
 
 
-
-
-
-
   // sounds for which harmonic resynthesis works:
+
   //testHarmonicResynthesis("Vla_CE.L (2)");
   //testHarmonicResynthesis("flute-C-octave0");
-  //testHarmonicResynthesis("flute-C-octave1");
+  testHarmonicResynthesis("flute-C-octave1");
 
   //testHarmonicResynthesis("flute-C-octave2");
   // the anti-alias algo, if used, removes everything above the 5th harmonic - why would it remove 
@@ -140,10 +153,10 @@ int main (int argc, char* argv[])
   // gets f0 totally wrong
 
 
-  testHarmonicResynthesis("violin_bounce1");
+  //testHarmonicResynthesis("violin_bounce1");
   // has buzzing artifact - also with cycle-correlation pitch detection
   // one buzz impulse is 2389-2390, next at 3306 - yep, these locations are very close to the found
-  // cycle marks
+  // cycle marks - i think, this buzz is due to inharmonicity
 
 
 
