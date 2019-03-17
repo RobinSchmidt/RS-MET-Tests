@@ -35,7 +35,6 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
   // replace by RAPT class
 }
 
-
 template<class T>
 inline std::vector<T> rsExtractRange(std::vector<T>& v, size_t first, size_t last)
 {
@@ -46,20 +45,31 @@ inline std::vector<T> rsExtractRange(std::vector<T>& v, size_t first, size_t las
   return r;
 }
 
-
-void testHarmonicResynthesis(const std::string& name)
+/** Analyzes and resynthesizes the wavefile with given name and write the results into 
+wavefiles. you may optionally pass a fundamental frequency - if none is passed, it will be 
+auto-detected. */
+void testHarmonicResynthesis(const std::string& name, double f0 = 0)
 {
   double fs;
   std::vector<double> x = loadSample(name, &fs);
 
-  //x = rsExtractRange(x, 0, 10000); // analyze only a portion
-  bool plot = x.size() <= 20000;  // plotting large wavefiles is not advisable
+  //x = rsExtractRange(x, 0, 15000); // analyze only a portion
+  bool plot = x.size() <= 20000;   // plotting large wavefiles is not advisable
 
-  testHarmonicResynthesis(name, x, fs, true, plot); 
+  testHarmonicResynthesis(name, x, fs, f0, true, plot); 
+  int dummy = 0;
+}
+
+void plotPhaseTrajectories(const std::string& name, std::vector<int> indices)
+{
+  double fs;
+  std::vector<double> x = loadSample(name, &fs);
 
 
   int dummy = 0;
 }
+
+
 
 //-------------------------------------------------------------------------------------------------
 
@@ -102,7 +112,7 @@ int main (int argc, char* argv[])
 
   //testHarmonicResynthesis("Vla_CE.L (2)");
   //testHarmonicResynthesis("flute-C-octave0");
-  testHarmonicResynthesis("flute-C-octave1");
+  //testHarmonicResynthesis("flute-C-octave1");
 
   //testHarmonicResynthesis("flute-C-octave2");
   // the anti-alias algo, if used, removes everything above the 5th harmonic - why would it remove 
@@ -122,7 +132,7 @@ int main (int argc, char* argv[])
   // needs a somewhat wider width due to the frequency sweep
 
 
-  //testHarmonicResynthesis("femalevoice_aa_A3");
+  testHarmonicResynthesis("femalevoice_aa_A3");
   // resynthesized sounds somwhat synthetic but okay but actually the original already has that
   // character, residual is really loud and weird - could there be phase errors in resynthesis?
   // when using only the first 20000 samples, it hits an assert, 10000 samples works
@@ -131,6 +141,19 @@ int main (int argc, char* argv[])
   // -> changing the kernel length does not seem to make a big difference
   // -actually, that sort of residual (a train of noisy pulses) seems to be typical also for other
   //  input signals
+  // -plot a de-trended phase-trajectory of one of the higher partials - maybe the decoherence is
+  //  due to phase behaving erratically at higher partials?
+  // -it seems, that the resynthesized phases are randomly off from the original phases - at most 
+  //  at time instants farthest away from datapoints
+  // -try different phase-interpolation methods (linear, hermite, quintic, etc.) - maybe it's the
+  //  interpolation error?
+  // -maybe, if the freq-estimates are far enough off the actual freqs, the (preliminary) computed
+  //  phase (by freq-integration) will end up in wrong cycle (wrong multiple of 2pi) - no amount of
+  //  re-adjustment of the phase can fix this - this would explain why there tends to be so much
+  //  high-freq in the noise bursts - higher freqs cycle faster from frame to frame so they can 
+  //  more easily end up in the wrong cycle..hmm...or do they? ...hmm...nope - that doesn't seem
+  //  to be the case
+
 
 
   //testHarmonicResynthesis("malevoice_oo_A2");
@@ -161,7 +184,7 @@ int main (int argc, char* argv[])
 
 
 
-  //testHarmonicResynthesis("guitar-ac-E-octave0");
+  //testHarmonicResynthesis("guitar-ac-E-octave0", 82);
   // takes long to compute (the synthesis takes long), shows buzzing artifacts
   // i think, the cycle-marks may be wrong? ...hmm - but pitch-flattened version looks good (when
   // taking only samples 0.20000, at least) - maybe the synthesis is to blame? -> plot the model
@@ -176,6 +199,7 @@ int main (int argc, char* argv[])
   // plotting the cycle-length trajectory shows that the cycle-detections fails badly
   // bandpass-settings: width=0.1, steepness=3, freq-range: 50-100 ..there's still buzz but much
   //  less with these settings
+  // -setting the fundamental manually improves it - but there's still buzz
 
 
 
