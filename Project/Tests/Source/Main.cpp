@@ -64,10 +64,7 @@ void testMakeHarmonic(const std::string& name, double targetFundamental,
 {
   double fs;
   std::vector<double> x = loadSample(name, &fs);
-
   testMakeHarmonic(name, x, fs, targetFundamental, originalFundamental);
-
-  //testHarmonicResynthesis(name, x, fs, f0, true, plot); 
 }
 
 void plotPhaseTrajectories(const std::string& name, std::vector<int> indices)
@@ -179,9 +176,13 @@ int main (int argc, char* argv[])
 
 
 
-
+  // original frequency is around 520Hz:
   testMakeHarmonic("flute-C-octave1", 440.0);
-  // 
+  //testMakeHarmonic("flute-C-octave1", 220.0);
+  // output too loud (clips) - due to new phase relationships between the partials
+  // maybe normalize output? and/or do not obtain the reference phase from the beginning of the 
+  // sample but rather from somewhere in the middle - avoid change of phase-relationships
+
 
 
 
