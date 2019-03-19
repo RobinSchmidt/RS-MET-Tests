@@ -57,7 +57,17 @@ void testHarmonicResynthesis(const std::string& name, double f0 = 0)
   bool plot = x.size() <= 20000;   // plotting large wavefiles is not advisable
 
   testHarmonicResynthesis(name, x, fs, f0, true, plot); 
-  int dummy = 0;
+}
+
+void testMakeHarmonic(const std::string& name, double targetFundamental, 
+  double originalFundamental = 0)
+{
+  double fs;
+  std::vector<double> x = loadSample(name, &fs);
+
+  testMakeHarmonic(name, x, fs, targetFundamental, originalFundamental);
+
+  //testHarmonicResynthesis(name, x, fs, f0, true, plot); 
 }
 
 void plotPhaseTrajectories(const std::string& name, std::vector<int> indices)
@@ -132,7 +142,7 @@ int main (int argc, char* argv[])
   // needs a somewhat wider width due to the frequency sweep
 
 
-  testHarmonicResynthesis("femalevoice_aa_A3");
+  //testHarmonicResynthesis("femalevoice_aa_A3");
   // resynthesized sounds somwhat synthetic but okay but actually the original already has that
   // character, residual is really loud and weird - could there be phase errors in resynthesis?
   // when using only the first 20000 samples, it hits an assert, 10000 samples works
@@ -164,6 +174,15 @@ int main (int argc, char* argv[])
   // f0 is a mess, even when reducing the detection bandwidth - we really need to plot the 
   // extracted fundamental
   // ahh - but using CYCLE_CORRELATION works well
+
+
+
+
+
+
+  testMakeHarmonic("flute-C-octave1", 440.0);
+  // 
+
 
 
 

@@ -337,6 +337,9 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Numerics\NumericCalculus.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Numerics\Optimization.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Numerics\RootFinder.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -509,6 +512,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalModel.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalProcessor.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalSynthesizer.cpp">
@@ -1898,6 +1904,7 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Misc\Statistics.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Numerics\Interpolation.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Numerics\NumericCalculus.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Numerics\Optimization.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Numerics\RootFinder.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Types\Matrix.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Math\Types\Polynomial.h"/>
@@ -1962,6 +1969,7 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\MiscUnfinished.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SampleManipulation.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalModel.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalProcessor.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\SinusoidalSynthesizer.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Sampling\Spectrogram.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\JUCE\modules\rapt\Unfinished\Unfinished.h"/>
