@@ -56,6 +56,11 @@ void testHarmonicResynthesis(const std::string& name, double f0 = 0)
   //x = rsExtractRange(x, 0, 15000); // analyze only a portion
   bool plot = x.size() <= 20000;   // plotting large wavefiles is not advisable
 
+  // to test the creation of false harmonics, we aggressively lowpass the audio at 8 kHz - any
+  // content above that in the resynthesized signal then has to be considered to be artifacts:
+  //RAPT::rsBiDirectionalFilter::applyButterworthLowpass(
+  //  &x[0], &x[0], (int)x.size(), 1000.0, fs, 20);
+
   testHarmonicResynthesis(name, x, fs, f0, true, plot); 
 }
 
@@ -119,7 +124,26 @@ int main (int argc, char* argv[])
 
   //testHarmonicResynthesis("Vla_CE.L (2)");
   //testHarmonicResynthesis("flute-C-octave0");
-  //testHarmonicResynthesis("flute-C-octave1");
+
+  testHarmonicResynthesis("flute-C-octave1");
+  // When passing the signal to an aggressive lowpass before analysis/resynthesis, the 
+  // resynthesized signal will nevertheless show high-freq content in the area that has been 
+  // removed. This is not due to the sinc-interpolator (the pitch-flattened signal looks fine) and
+  // also not due the synthesis (removing partials above the lowpass cutoff removes the artifacts)
+  // so it must indeed be the case that the analyzer sees nonzero amplitudes where the amplitude
+  // should be zero ...could it be that the frequency modulation due to pitch-flattening produces
+  // these? ...but no: then they should be visible in the pitch-flattened signal already
+  // it's also interesting to note that these artifacts don't occur when the input is a sum
+  // of the first 10 harmonics of a sawtooth wave - that rules out a bug in the FFT computation (or
+  // makes it unlikely)
+  // todo: plot the short-time spectra that occur during analysis (maybe on dB scale)
+  // ...hmm...i'm not so sure anymore if the sinc-interpolator can be ruled out - try a different
+  // window function
+  // i now think, it's the amplitude modulation present on the lower partials that shows up as 
+  // spurious harmonics - if the amplitude of a lower harmonic changes during the course of a 
+  // cycle, we get spurious higher harmonics - maybe that also can be remedied by using better
+  // window functions (and longer segments)
+
 
   //testHarmonicResynthesis("flute-C-octave2");
   // the anti-alias algo, if used, removes everything above the 5th harmonic - why would it remove 
@@ -177,8 +201,8 @@ int main (int argc, char* argv[])
 
 
   // original frequency is around 520Hz (midi-key 72, 523.25...Hz):
-  double freq = rsPitchToFreq(72.0);
-  testMakeHarmonic("flute-C-octave1", 440.0, 0.0);  
+  //double freq = rsPitchToFreq(72.0);
+  //testMakeHarmonic("flute-C-octave1", 440.0, 0.0);  
   //testMakeHarmonic("flute-C-octave1", freq, 0.1);  
   // this also has many partials at zero amplitude that would actually alias - clean up! this also
   // will make the synthesis faster
