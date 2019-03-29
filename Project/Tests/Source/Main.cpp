@@ -56,10 +56,11 @@ void testHarmonicResynthesis(const std::string& name, double f0 = 0)
   //x = rsExtractRange(x, 0, 15000); // analyze only a portion
   bool plot = x.size() <= 20000;   // plotting large wavefiles is not advisable
 
-  // to test the creation of false harmonics, we aggressively lowpass the audio at 8 kHz - any
+  // to test the creation of false harmonics, we aggressively lowpass the audio at 5 kHz - any
   // content above that in the resynthesized signal then has to be considered to be artifacts:
-  //RAPT::rsBiDirectionalFilter::applyButterworthLowpass(
-  //  &x[0], &x[0], (int)x.size(), 1000.0, fs, 20);
+  RAPT::rsBiDirectionalFilter::applyButterworthLowpass(
+    &x[0], &x[0], (int)x.size(), 2000.0, fs, 20);
+  RAPT::rsArray::normalize(&x[0], (int) x.size(), 1.0);
 
   testHarmonicResynthesis(name, x, fs, f0, true, plot); 
 }
