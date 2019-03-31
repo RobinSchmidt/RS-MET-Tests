@@ -1,6 +1,9 @@
 The samples in this folder are released under the creative commons license (see http://creativecommons.org/by/3.0/). They were collected and edited by Robin Schmidt (www.rs-met.com) and originate from:
 
 
+The Berklee Sampling Archive Volume 1:
+piano_E2
+
 The Berklee Sampling Archive Volume 2:
 violin_bounce1
 

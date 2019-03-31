@@ -54,13 +54,14 @@ void testHarmonicResynthesis(const std::string& name, double f0 = 0)
   std::vector<double> x = loadSample(name, &fs);
 
   //x = rsExtractRange(x, 0, 15000); // analyze only a portion
-  bool plot = x.size() <= 20000;   // plotting large wavefiles is not advisable
+  bool plot = false;
+  // plot = x.size() <= 20000;   // plotting large wavefiles is not advisable
 
   // to test the creation of false harmonics, we aggressively lowpass the audio at 5 kHz - any
   // content above that in the resynthesized signal then has to be considered to be artifacts:
-  RAPT::rsBiDirectionalFilter::applyButterworthLowpass(
-    &x[0], &x[0], (int)x.size(), 2000.0, fs, 20);
-  RAPT::rsArray::normalize(&x[0], (int) x.size(), 1.0);
+  //RAPT::rsBiDirectionalFilter::applyButterworthLowpass(
+  //  &x[0], &x[0], (int)x.size(), 2000.0, fs, 20);
+  //RAPT::rsArray::normalize(&x[0], (int) x.size(), 1.0);
 
   testHarmonicResynthesis(name, x, fs, f0, true, plot); 
 }
@@ -90,6 +91,9 @@ int main (int argc, char* argv[])
 {
 
   // todo: 
+  // -figure out why we get artifacts with the blackman window
+  // -allow arbitrary cycleLength
+  // -maybe allow each cycle to have its own length - bypass the time-warping
   // -plot the residual with the cycle-marks for sounds that show the buzz - maybe the buzz 
   //  impulses are at the cycle-marks - if so, that could be an important hint - yep - that
   //  seems to be indeed the case. or hmm - they are *close* to the marks but sometimes slightly
@@ -124,6 +128,9 @@ int main (int argc, char* argv[])
   // sounds for which harmonic resynthesis works:
 
   //testHarmonicResynthesis("Vla_CE.L (2)");
+  // Hamming leaves some harmonic content in the residual, with Blackman it's purely noisy
+
+
   //testHarmonicResynthesis("flute-C-octave0");
 
   testHarmonicResynthesis("flute-C-octave1");
@@ -144,6 +151,17 @@ int main (int argc, char* argv[])
   // spurious harmonics - if the amplitude of a lower harmonic changes during the course of a 
   // cycle, we get spurious higher harmonics - maybe that also can be remedied by using better
   // window functions (and longer segments)
+
+  // with nc=4, zp=4, wt=bm, there are weird artifacts - could it be that a harmonic is recorded
+  // twice sometimes and once at other times? ..oh - not it seems to switch between 0 and 1 times
+  // setting T minPeakWidth = T(0.0); does not change anything - this means the decsision in
+  // isPeakPartial seems not to be at fault
+  // doing if(kPeak == -1 /* || kPeak == kPeakOld */ ) { also doesn't help
+  // doing return kCenter; at the beginning of findPeakBinNear does help
+  // give the user the options to totally bypass the peakBin search and use kHarm always
+  // -works for the flute well and does not porduce false harmonics
+  // is has to do with what getSpectralPeakSearchWidth returns - if the width is too wide, it may 
+  // return a value form the edge which is then discarded...or something
 
 
   //testHarmonicResynthesis("flute-C-octave2");
@@ -234,6 +252,13 @@ int main (int argc, char* argv[])
 
 
 
+
+  //testHarmonicResynthesis("piano_E2");
+  // garbage at the beginning (cycle-mark-errors) with CYCLE_CORRELATION, it works, but there are 
+  // artifacts - i think, maybe partials switching on and off? try stricter ot looser criteria
+  // for considering a peak a mainlobe
+  // setAllowInharmonics(false): removes the artifacts
+  // setMinPeakWidth(0.0): does not help against it - why?
 
   //testHarmonicResynthesis("guitar-ac-E-octave0", 82);
   // takes long to compute (the synthesis takes long), shows buzzing artifacts
