@@ -11,11 +11,33 @@ using namespace rosic;
 // name)
 std::vector<double> loadSample(const std::string& name, double* sampleRate = nullptr)
 {
+
+
   // load sample data into temporary buffer:
+  int numChannels = 0, numFrames = 0, iSampleRate = 0;
+  double** data = nullptr;
+
+  /*
+  // old - only one sample directory supprted:
   std::string sampleDir = "../../../../Data/Samples/";
   std::string path      = sampleDir + name + ".wav";
-  int numChannels = 0, numFrames = 0, iSampleRate = 0;
-  double** data = readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
+  data = readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
+  if(data == nullptr) {
+    rsError("File not found");
+    return std::vector<double>();
+  }
+  */
+
+  // new - multiple sample directories supported:
+  std::vector<std::string> sampleDirs 
+    = { "../../../../Data/Samples/", 
+        "../../../../Data/Samples/Elan/" };
+  for(size_t i = 0; i < sampleDirs.size(); i++) {
+    std::string path = sampleDirs[i] + name + ".wav";
+    data = readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
+    if(data != nullptr)
+      break;   // file was found in current directory
+  }
   if(data == nullptr) {
     rsError("File not found");
     return std::vector<double>();
@@ -133,7 +155,7 @@ int main (int argc, char* argv[])
 
   //testHarmonicResynthesis("flute-C-octave0");
 
-  testHarmonicResynthesis("flute-C-octave1");
+  //testHarmonicResynthesis("flute-C-octave1");
   // When passing the signal to an aggressive lowpass before analysis/resynthesis, the 
   // resynthesized signal will nevertheless show high-freq content in the area that has been 
   // removed. This is not due to the sinc-interpolator (the pitch-flattened signal looks fine) and
@@ -232,9 +254,7 @@ int main (int argc, char* argv[])
   // sample but rather from somewhere in the middle - avoid change of phase-relationships
 
 
-
-
-
+  testHarmonicResynthesis("Cello_C1");
 
   // sounds for which harmonic resynthesis doesn't work:
 
