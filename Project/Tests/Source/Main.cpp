@@ -254,7 +254,8 @@ int main (int argc, char* argv[])
   // sample but rather from somewhere in the middle - avoid change of phase-relationships
 
 
-  testHarmonicResynthesis("Cello_C1");
+  //testHarmonicResynthesis("Cello_C1");
+  testMakeHarmonic("Cello_C1", 65.0);
 
   // sounds for which harmonic resynthesis doesn't work:
 
