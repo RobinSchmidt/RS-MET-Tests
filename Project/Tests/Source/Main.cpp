@@ -100,16 +100,14 @@ void plotPhaseTrajectories(const std::string& name, std::vector<int> indices)
 {
   double fs;
   std::vector<double> x = loadSample(name, &fs);
-
-
-  int dummy = 0;
+  //int dummy = 0;
 }
 
 
 
 //-------------------------------------------------------------------------------------------------
 
-int main (int argc, char* argv[])
+int main (int /*argc*/, char* /*argv[]*/)
 {
 
   // todo: 
