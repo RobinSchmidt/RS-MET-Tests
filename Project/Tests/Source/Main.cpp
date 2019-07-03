@@ -259,7 +259,8 @@ int main (int argc, char* argv[])
 
   //testHarmonicResynthesis("BassClarinet_Cs1");
 
-  testHarmonicResynthesis("Rhodes_F3");
+  testHarmonicResynthesis("Rhodes_F3_Short");
+  //testHarmonicResynthesis("Rhodes_F3");
 
 
   // sounds for which harmonic resynthesis doesn't work:
