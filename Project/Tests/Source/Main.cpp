@@ -96,6 +96,14 @@ void testMakeHarmonic(const std::string& name, double targetFundamental,
   testMakeHarmonic(name, x, fs, targetFundamental, inharmonicity, originalFundamental);
 }
 
+void testModalResynthesis(const std::string& name, double f0 = 0)
+{
+  double fs;
+  std::vector<double> x = loadSample(name, &fs);
+  testModalResynthesis(name, x, fs, f0); 
+}
+
+
 void plotPhaseTrajectories(const std::string& name, std::vector<int> indices)
 {
   double fs;
@@ -257,7 +265,8 @@ int main (int /*argc*/, char* /*argv[]*/)
 
   //testHarmonicResynthesis("BassClarinet_Cs1");
 
-  testHarmonicResynthesis("Rhodes_F3_Short");
+  //testHarmonicResynthesis("Rhodes_F3_Short");
+  testModalResynthesis("Rhodes_F3_Short");
   //testHarmonicResynthesis("Rhodes_F3");
 
 
