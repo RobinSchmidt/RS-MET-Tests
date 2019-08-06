@@ -103,6 +103,14 @@ void testModalResynthesis(const std::string& name, double f0 = 0)
   testModalResynthesis(name, x, fs, f0); 
 }
 
+void testDeBeating(const std::string& name, double f0 = 0)
+{
+  double fs;
+  std::vector<double> x = loadSample(name, &fs);
+  testDeBeating(name, x, fs, f0); 
+}
+
+
 
 void plotPhaseTrajectories(const std::string& name, std::vector<int> indices)
 {
@@ -268,13 +276,16 @@ int main (int /*argc*/, char* /*argv[]*/)
   //testHarmonicResynthesis("Rhodes_F3_Short");
   //testHarmonicResynthesis("Rhodes_F3");
 
-  testModalResynthesis("Rhodes_F3_Short");
+  //testModalResynthesis("Rhodes_F3_Short");
   // it seems like the 9th harmonic (index 8 after removing DC) has a much too low amplitude in the
   // resynthesized signal - there seems to be an estimation error - this harmonic seems to have a 
   // bimodal amp env, and i think, it is one where the analyzed attack is longer than the decay 
   // (such that the attack is artificially shortened) - i think, the decay may be too fast due to
   // bimodality? maybe, we should de-beat the amp-env before? ...yes, that's very plausible - try
   // amp-envelope de-beating before modal modeling
+
+  testDeBeating("BeatingSines");
+
 
 
 
