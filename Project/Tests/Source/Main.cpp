@@ -284,7 +284,22 @@ int main (int /*argc*/, char* /*argv[]*/)
   // bimodality? maybe, we should de-beat the amp-env before? ...yes, that's very plausible - try
   // amp-envelope de-beating before modal modeling
 
-  testDeBeating("BeatingSines");
+  //testDeBeating("BeatingSines");
+
+  //testDeBeating("Rhodes_F3_Short");
+  //testDeBeating("Rhodes_F3");
+  testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 short", 350); // pitch estimation finds 175
+
+  // with the (short) rhodes-sample, the 3rd partial seems to get too loud towards the end
+  // -take a look at the amplitude envelopes after de-beating
+  //  ->we get problems when the envelope is monotonically decreasing - there are too few 
+  //    datapoints in the de-beated envelope - we get straight linear fade-outs when they should
+  //    be exponential
+  // -maybe the cutoff frequency for the phase-smoother should not be the same for all partials 
+  //  maybe it should depend on the frequency of the partial
+  // -it seems, the amp-env for the DC component of the rhodes has negative values - how is that 
+  //  possible?
+
 
 
 
