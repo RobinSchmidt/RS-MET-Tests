@@ -52,7 +52,7 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
 
   // copy data into std::vector and clean up memory:
   std::vector<double> v(numFrames);
-  RAPT::rsArray::copyBuffer(data[0], &v[0], numFrames);
+  RAPT::rsArray::copy(data[0], &v[0], numFrames);
   MatrixTools::rsDeAllocateMatrix(data, numChannels, numFrames);
   return v;
 
@@ -114,6 +114,14 @@ void testDeBeating(const std::string& name, double f0 = 0)
 }
 
 
+
+void testEnvelopeMatching(const std::string& name1, const std::string& name2)
+{
+  double fs;
+  std::vector<double> x1 = loadSample(name1, &fs);
+  std::vector<double> x2 = loadSample(name2, &fs);
+  testEnvelopeMatching(x1, x2);
+}
 
 void plotPhaseTrajectories(const std::string& name, std::vector<int> indices)
 {
@@ -375,8 +383,13 @@ int main (int /*argc*/, char* /*argv[]*/)
   // for the first full cycle when there's a long incomplete one before it.
 
 
+  testEnvelopeMatching(
+    "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3",
+    "MutedMallets/(0105)DPan_MutedMalletsEast`n=D2`tail=1");
 
-  testHarmonicResynthesis("Twang");
+  
+
+  //testHarmonicResynthesis("Twang");
   // maybe make a function visualizeSineComponents or: plotAmpEnvelopes(minPartial, maxPartial),
   // plotFreqEnvelopes(minPartial, maxPartial)
 
