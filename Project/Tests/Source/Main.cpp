@@ -31,7 +31,8 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
   // new - multiple sample directories supported:
   std::vector<std::string> sampleDirs 
     = { "../../../../Data/Samples/", 
-        "../../../../Data/Samples/Elan/" };
+        "../../../../Data/Samples/Elan/",
+        "../../../../Data/Samples/Misc/"};
   for(size_t i = 0; i < sampleDirs.size(); i++) {
     std::string path = sampleDirs[i] + name + ".wav";
     data = readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
@@ -39,7 +40,9 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
       break;   // file was found in current directory
   }
   if(data == nullptr) {
-    rsError("File not found");
+    rsError("File not found or invalid");
+     // todo: give two separate error messages for the two conditions (->figure out, if the file 
+    // exists - if so, it's an unsupported format)
     return std::vector<double>();
   }
 
@@ -288,7 +291,7 @@ int main (int /*argc*/, char* /*argv[]*/)
 
   //testDeBeating("Rhodes_F3_Short");
   //testDeBeating("Rhodes_F3");
-  testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 short", 350); // pitch estimation finds 175
+  //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 short", 350); // pitch estimation finds 175
 
   // with the (short) rhodes-sample, the 3rd partial seems to get too loud towards the end
   // -take a look at the amplitude envelopes after de-beating
@@ -371,6 +374,11 @@ int main (int /*argc*/, char* /*argv[]*/)
   // it gets longer - it may happen that it becomes longer than the blockSize - the same is true
   // for the first full cycle when there's a long incomplete one before it.
 
+
+
+  testHarmonicResynthesis("Twang");
+  // maybe make a function visualizeSineComponents or: plotAmpEnvelopes(minPartial, maxPartial),
+  // plotFreqEnvelopes(minPartial, maxPartial)
 
 
   // todo: check for memleaks (maybe move the memleak checking code to rosic)
