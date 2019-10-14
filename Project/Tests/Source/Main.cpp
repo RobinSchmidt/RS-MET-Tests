@@ -383,9 +383,13 @@ int main (int /*argc*/, char* /*argv[]*/)
   // for the first full cycle when there's a long incomplete one before it.
 
 
+  //testEnvelopeMatching(
+  //  "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3",
+  //  "MutedMallets/(0105)DPan_MutedMalletsEast`n=D2`tail=1");
+
   testEnvelopeMatching(
     "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3",
-    "MutedMallets/(0105)DPan_MutedMalletsEast`n=D2`tail=1");
+    "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3_1");
 
   
 
