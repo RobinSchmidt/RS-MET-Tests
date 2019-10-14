@@ -394,7 +394,7 @@ int main (int /*argc*/, char* /*argv[]*/)
 
   testEnvelopeMatching(
     "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
-    "MutedMallets/(0031)DPan_MutedMalletsNorth`n=D2`tail=1");
+    "MutedMallets/(0032)DPan_MutedMalletsNorth`n=D2`tail=1");
 
   
 
