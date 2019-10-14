@@ -387,9 +387,14 @@ int main (int /*argc*/, char* /*argv[]*/)
   //  "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3",
   //  "MutedMallets/(0105)DPan_MutedMalletsEast`n=D2`tail=1");
 
+  //testEnvelopeMatching(
+  //  "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3",
+  //  "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3_1");
+
+
   testEnvelopeMatching(
-    "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3",
-    "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3_1");
+    "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+    "MutedMallets/(0031)DPan_MutedMalletsNorth`n=D2`tail=1");
 
   
 
