@@ -113,14 +113,20 @@ void testDeBeating(const std::string& name, double f0 = 0)
   testDeBeating(name, x, fs, f0); 
 }
 
-
-
 void testEnvelopeMatching(const std::string& name1, const std::string& name2)
 {
   double fs;
   std::vector<double> x1 = loadSample(name1, &fs);
   std::vector<double> x2 = loadSample(name2, &fs);
   testEnvelopeMatching(x1, x2);
+}
+
+void testEnvelopeMatching2(const std::string& name1, const std::string& name2)
+{
+  double fs;
+  std::vector<double> x1 = loadSample(name1, &fs);
+  std::vector<double> x2 = loadSample(name2, &fs);
+  testEnvelopeMatching2(x1, x2);
 }
 
 void plotPhaseTrajectories(const std::string& name, std::vector<int> indices)
@@ -392,10 +398,13 @@ int main (int /*argc*/, char* /*argv[]*/)
   //  "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3_1");
 
 
-  testEnvelopeMatching(
+  testEnvelopeMatching2(
     "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
-    "MutedMallets/(0032)DPan_MutedMalletsNorth`n=D2`tail=1");
+    "MutedMallets/(0034)DPan_MutedMalletsNorth`n=D2`tail=1");
 
+  testEnvelopeMatching2(
+    "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+    "MutedMallets/(0031)DPan_MutedMalletsNorth`n=D2`tail=1");
   
 
   //testHarmonicResynthesis("Twang");
