@@ -1,9 +1,19 @@
 //#define RS_PLOTTING
 
-#include "../JuceLibraryCode/JuceHeader.h"
+/*
+ToDo:
+-figure out why the debeating with Rhodes Tuned F3 V12TX -16.4 10-17-16 triggers the assertion
+ for the invalid sinusoidal model - do the amplitudes become negative? maybe print debug info in
+ the SinusoidalPartial::isDataValid
+-check rsEnvelopeExtractor::getMetaEnvelope, especially fillSparseAreas
+*/
 
+#include "../JuceLibraryCode/JuceHeader.h"
 using namespace RAPT;
 using namespace rosic;
+
+
+
 
 // move to TestTools.cpp...maybe rename wo waveLoad or wavRead...maybe have wavWrite too, maybe 
 // move to rosic..or - no - this function is specific to this project (it uses the project-specific
@@ -304,8 +314,25 @@ int main (int /*argc*/, char* /*argv[]*/)
   //testDeBeating("BeatingSines");
 
   //testDeBeating("Rhodes_F3_Short");
+  // for partial 3, the meta-envelope is too short in rsEnvelopeExtractor<T>::connectPeaks
+  // too see it, activate plotting in rsEnvelopeExtractor<T>::fillSparseAreas
+  // ->try to come up with an artificial test signal that exposes this behavior
+
   //testDeBeating("Rhodes_F3");
-  //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 short", 350); // pitch estimation finds 175
+
+
+
+  //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 short",   175); 
+  //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16",         175);  // long sample
+  testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 shorter", 175); 
+
+  // the long sample has a frequency glitch at the beginning
+
+  // -pitch estimation finds 175 - well, it actually IS 175
+  // -even if we pass 350, the lowes frew in the model is still at 175
+  // -the isDataValid assert triggers after de-beating - apparently, the process may create data 
+  //  that's invalid
+  // see comments in rsPartialBeatingRemover<T>::removeAmplitudeBeating
 
   // with the (short) rhodes-sample, the 3rd partial seems to get too loud towards the end
   // -take a look at the amplitude envelopes after de-beating
@@ -315,7 +342,14 @@ int main (int /*argc*/, char* /*argv[]*/)
   // -maybe the cutoff frequency for the phase-smoother should not be the same for all partials 
   //  maybe it should depend on the frequency of the partial
   // -it seems, the amp-env for the DC component of the rhodes has negative values - how is that 
-  //  possible?
+  //  possible? i think the filtering process has overshoot leading to the amplitude undershooting
+  //  zero - maybe we should use a filter that doesn't have any overshoot - or clip at zero
+  //  -actually, the DC component already has negative values in the unmodified analysis data - but
+  //   the assert does not trigger - why not? it should! because the loop starts at partial 1
+  //   DC is not taken into account
+  // -the cyan curve really goes below zero at the end - that's not only a filter overshoot
+
+
 
 
 
@@ -397,14 +431,25 @@ int main (int /*argc*/, char* /*argv[]*/)
   //  "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3",
   //  "MutedMallets/(0096)DPan_MutedMalletsEast`n=D2`tail=3_1");
 
+  //testEnvelopeMatching2(
+  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+  //  "MutedMallets/(0036)DPan_MutedMalletsNorth`n=D2`tail=1");
 
-  testEnvelopeMatching2(
-    "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
-    "MutedMallets/(0034)DPan_MutedMalletsNorth`n=D2`tail=1");
+  //testEnvelopeMatching2(
+  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+  //  "MutedMallets/(0037)DPan_MutedMalletsNorth`n=D2`tail=1");
 
-  testEnvelopeMatching2(
-    "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
-    "MutedMallets/(0031)DPan_MutedMalletsNorth`n=D2`tail=1");
+  //testEnvelopeMatching2(
+  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+  //  "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1");
+
+  //testEnvelopeMatching2(
+  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+  //  "MutedMallets/(0034)DPan_MutedMalletsNorth`n=D2`tail=1");
+
+  //testEnvelopeMatching2(
+  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+  //  "MutedMallets/(0031)DPan_MutedMalletsNorth`n=D2`tail=1");
   
 
   //testHarmonicResynthesis("Twang");
