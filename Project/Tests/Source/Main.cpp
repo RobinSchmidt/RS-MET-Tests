@@ -5,6 +5,8 @@ ToDo:
 -figure out why the debeating with Rhodes Tuned F3 V12TX -16.4 10-17-16 triggers the assertion
  for the invalid sinusoidal model - do the amplitudes become negative? maybe print debug info in
  the SinusoidalPartial::isDataValid
+ -try to come up with a test-signal for the de-beater that shows that go-below-zero behavior
+ -it's the linear interpolation which seems to use extrapolation at the end - but why?
 -check rsEnvelopeExtractor::getMetaEnvelope, especially fillSparseAreas
 */
 
