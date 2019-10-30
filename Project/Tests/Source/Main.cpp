@@ -2,12 +2,31 @@
 
 /*
 ToDo:
+-rsPartialBeatingRemover<T>::removeAmplitudeBeating - let the user set setMaxEnvelopeSampleSpacing
+ ...or provide meaningful defaults
+-introduce a multiplier > 1 for the maxSpacing
+-debeating has still problems when the amplitude is mis-estimated as zero - but this mis-estimation
+ is a problem, we need to fix anyway
+ better: use the maximum distance between found peaks as the minimum distance between de-beated
+ env datapoints
+-maybe factor out a meta-envelope extractor
+
+-figure out, why the analysis may produce negative amplitudes for the DC component
+
+
+
+-figure out why there's a glitch at the end with debeating the rhodes sample
+ -it also occurs when analyzing and resynthesizing only the DC component and it's not present in 
+  the output synthesized from the unmodified model -> bug must be in the de-beater
 -figure out why the debeating with Rhodes Tuned F3 V12TX -16.4 10-17-16 triggers the assertion
  for the invalid sinusoidal model - do the amplitudes become negative? maybe print debug info in
  the SinusoidalPartial::isDataValid
- -try to come up with a test-signal for the de-beater that shows that go-below-zero behavior
- -it's the linear interpolation which seems to use extrapolation at the end - but why?
--check rsEnvelopeExtractor::getMetaEnvelope, especially fillSparseAreas
+ ->the debeater produces a nan value for the amplitude last datapoint of the DC component
+ ->it seems rsEnvelopeExtractor<T>::setupEndValues appends a last datapoint with the same 
+   time-stamp as the second-to-last - this leads to a division by zero whe trying to interpolate
+   ->seems fixed
+
+
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -323,13 +342,11 @@ int main (int /*argc*/, char* /*argv[]*/)
   //testDeBeating("Rhodes_F3");
 
 
-
+  //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 shorter", 175); 
   //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 short",   175); 
   //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16",         175);  // long sample
-  testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 shorter", 175); 
 
   // the long sample has a frequency glitch at the beginning
-
   // -pitch estimation finds 175 - well, it actually IS 175
   // -even if we pass 350, the lowes frew in the model is still at 175
   // -the isDataValid assert triggers after de-beating - apparently, the process may create data 
@@ -441,9 +458,9 @@ int main (int /*argc*/, char* /*argv[]*/)
   //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
   //  "MutedMallets/(0037)DPan_MutedMalletsNorth`n=D2`tail=1");
 
-  //testEnvelopeMatching2(
-  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
-  //  "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1");
+  testEnvelopeMatching2(
+    "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+    "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1");
 
   //testEnvelopeMatching2(
   //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
