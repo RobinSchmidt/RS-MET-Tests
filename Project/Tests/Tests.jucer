@@ -7,6 +7,7 @@
   <MAINGROUP id="CUZTt8" name="Tests">
     <GROUP id="{9D6FC012-FDEA-B506-96A3-33E47579AA64}" name="Source">
       <FILE id="IgKNsd" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="s0cXdg" name="TestTools.cpp" compile="0" resource="0" file="Source/TestTools.cpp"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

@@ -139,6 +139,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Main.cpp"/>
+    <ClCompile Include="..\..\Source\TestTools.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Analysis\Analysis.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -274,6 +277,9 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\FunctionIterators.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\FunctionOperators.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\IntegerFunctions.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -400,24 +406,6 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Spectral\Spectrogram.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Analysis.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\ArrayFunctions.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Math.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Misc.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Polynomial.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Vector.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Analysis\AutoCorrelationPitchDetector.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -463,6 +451,9 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Filters\MovingAverage.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Filters\NonUniformFilter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Filters\PhonoFilter.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -493,10 +484,19 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\NumberTheory.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\RationalFunction.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\RationalFunctionTools.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\Statistics.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\Transforms.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\AttackDecayEnvelope.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\AudioFunctions.cpp">
@@ -524,6 +524,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\OscArrays.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\Polyphony.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\ResponseGetters.cpp">
@@ -1855,9 +1858,6 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\FilterDesign\ComplementaryFilters.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\FilterDesign\NonUniformFilter.cpp">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\FilterDesign\PoleZeroDesignerAnalog.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1877,6 +1877,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Ideas.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\ModalAnalyzer.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\OscDrivers.cpp">
@@ -1903,10 +1906,10 @@
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Prototypes.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\RationalFunction.cpp">
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\QuantumSystems.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\RationalFunctionTools.cpp">
+    <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Relativity.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Tensor.cpp">
@@ -1993,6 +1996,7 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\ComplexFunctions.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\FunctionIterators.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\FunctionObjects.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\FunctionOperators.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\IntegerFunctions.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\InterpolatingFunction.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Math\Functions\Mappers.h"/>
@@ -2034,12 +2038,6 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Spectral\SinusoidalSynthesizer.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Spectral\Spectral.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Spectral\Spectrogram.h"/>
-    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Analysis.h"/>
-    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\ArrayFunctions.h"/>
-    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Math.h"/>
-    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Misc.h"/>
-    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Polynomial.h"/>
-    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Temp\Vector.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Analysis\AutoCorrelationPitchDetector.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Analysis\CyclicAutoCorrelator.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Analysis\FormantRemover.h"/>
@@ -2055,6 +2053,7 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Filters\LadderFilter.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Filters\ModalFilterBank.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Filters\MovingAverage.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Filters\NonUniformFilter.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Filters\PhonoFilter.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\AffineTransform2D.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\DifferentialEquationSystem.h"/>
@@ -2068,11 +2067,14 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\NumberTheory.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\Point2D.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\Polygon2D.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\RationalFunction.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\RationalFunctionTools.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\Rectangle2D.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\Statistics.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\Transforms.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\Triangle2D.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\Math\Vector.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\AttackDecayEnvelope.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\AudioFunctions.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\BandwidthConverter.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\BlepBlampOscs.h"/>
@@ -2082,6 +2084,7 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\Interpolator.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\MiscAudio.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\OscArrays.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\Polyphony.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\ResponseGetters.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\Saturator.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rapt\Unfinished\MiscAudio\WindowFunctions.h"/>
@@ -2187,6 +2190,7 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rosic\_third_party\tnt\tnt_subscript.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rosic\_third_party\tnt\tnt_vec.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rosic\_third_party\tnt\tnt_version.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rosic\_third_party\Various\simdMath.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rosic\analysis\rosic_BeatDetector.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rosic\analysis\rosic_CyclicAutoCorrelator.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rosic\analysis\rosic_EnvelopeFollower.h"/>
@@ -2561,7 +2565,6 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Experiments\MiscExperiments.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Misc\TestClasses.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\FilterDesign\ComplementaryFilters.h"/>
-    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\FilterDesign\NonUniformFilter.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\FilterDesign\PoleZeroDesignerAnalog.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\FilterDesign\PoleZeroDesignerDigital.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\FilterDesign\PoleZeroMapper.h"/>
@@ -2569,6 +2572,7 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Drawing.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\FiniteAutomaton.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Ideas.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\ModalAnalyzer.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\OscDrivers.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\PartialDifferentialEquations.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\ParticleBouncer.h"/>
@@ -2577,8 +2581,8 @@
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Probability.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Projection3Dto2D.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Prototypes.h"/>
-    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\RationalFunction.h"/>
-    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\RationalFunctionTools.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\QuantumSystems.h"/>
+    <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Relativity.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\Prototypes\Tensor.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\TestTools\Utilities\FileWriting.h"/>
     <ClInclude Include="..\..\..\..\..\RS-MET\Libraries\RobsJuceModules\rs_testing\TestTools\Utilities\PerformanceTestTools.h"/>

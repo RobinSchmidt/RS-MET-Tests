@@ -29,67 +29,11 @@ ToDo:
 
 */
 
-#include "../JuceLibraryCode/JuceHeader.h"
-using namespace RAPT;
-using namespace rosic;
+#include "TestTools.cpp"
 
 
 
-
-// move to TestTools.cpp...maybe rename wo waveLoad or wavRead...maybe have wavWrite too, maybe 
-// move to rosic..or - no - this function is specific to this project (it uses the project-specific
-// sample path - but mayb factor out an rsWavRead that takes a path as argument (and not just a 
-// name)
-std::vector<double> loadSample(const std::string& name, double* sampleRate = nullptr)
-{
-
-
-  // load sample data into temporary buffer:
-  int numChannels = 0, numFrames = 0, iSampleRate = 0;
-  double** data = nullptr;
-
-  /*
-  // old - only one sample directory supprted:
-  std::string sampleDir = "../../../../Data/Samples/";
-  std::string path      = sampleDir + name + ".wav";
-  data = readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
-  if(data == nullptr) {
-    rsError("File not found");
-    return std::vector<double>();
-  }
-  */
-
-  // new - multiple sample directories supported:
-  std::vector<std::string> sampleDirs 
-    = { "../../../../Data/Samples/", 
-        "../../../../Data/Samples/Elan/",
-        "../../../../Data/Samples/Misc/"};
-  for(size_t i = 0; i < sampleDirs.size(); i++) {
-    std::string path = sampleDirs[i] + name + ".wav";
-    data = readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
-    if(data != nullptr)
-      break;   // file was found in current directory
-  }
-  if(data == nullptr) {
-    rsError("File not found or invalid");
-     // todo: give two separate error messages for the two conditions (->figure out, if the file 
-    // exists - if so, it's an unsupported format)
-    return std::vector<double>();
-  }
-
-  // assign sample-rate, if variable is passed:
-  if(sampleRate != nullptr)
-    *sampleRate = (double) iSampleRate;
-
-  // copy data into std::vector and clean up memory:
-  std::vector<double> v(numFrames);
-  RAPT::rsArray::copy(data[0], &v[0], numFrames);
-  MatrixTools::rsDeAllocateMatrix(data, numChannels, numFrames);
-  return v;
-
-  // todo: rename rosic::rsArray ...maybe to rsDynamicArray..or remove the class from rosic or 
-  // replace by RAPT class
-}
+// move many of theses functions to TestTools.cpp ...maybe some also to rapt or rosic
 
 template<class T>
 inline std::vector<T> rsExtractRange(std::vector<T>& v, size_t first, size_t last)
@@ -342,9 +286,11 @@ int main (int /*argc*/, char* /*argv[]*/)
   //testDeBeating("Rhodes_F3");
 
 
-  //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 shorter", 175); 
+  testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 shorter", 175); 
   //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 short",   175); 
   //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16",         175);  // long sample
+  //testDeBeating("Rhodes Tuned F#3 V14TX -12.1 1-12-17");
+  //testDeBeating("Rhodes Tuned F#3 V14TX -12.1 1-12-17",   184);
 
   // the long sample has a frequency glitch at the beginning
   // -pitch estimation finds 175 - well, it actually IS 175
@@ -458,9 +404,9 @@ int main (int /*argc*/, char* /*argv[]*/)
   //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
   //  "MutedMallets/(0037)DPan_MutedMalletsNorth`n=D2`tail=1");
 
-  testEnvelopeMatching2(
-    "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
-    "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1");
+  //testEnvelopeMatching2(
+  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+  //  "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1");
 
   //testEnvelopeMatching2(
   //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
