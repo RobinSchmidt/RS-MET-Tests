@@ -3,7 +3,7 @@
 <JUCERPROJECT id="jNbQvd" name="Tests" displaySplashScreen="1" reportAppUsage="1"
               splashScreenColour="Dark" projectType="consoleapp" version="1.0.0"
               bundleIdentifier="com.yourcompany.NewProject" includeBinaryInAppConfig="1"
-              cppLanguageStandard="11" companyCopyright="" jucerVersion="5.4.3">
+              cppLanguageStandard="17" companyCopyright="" jucerVersion="5.4.3">
   <MAINGROUP id="CUZTt8" name="Tests">
     <GROUP id="{9D6FC012-FDEA-B506-96A3-33E47579AA64}" name="Source">
       <FILE id="IgKNsd" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>

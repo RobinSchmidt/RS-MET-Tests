@@ -31,22 +31,6 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
   int numChannels = 0, numFrames = 0, iSampleRate = 0;
   double** data = nullptr;
 
-  /*
-  // old - only one sample directory supprted:
-  std::string sampleDir = "../../../../Data/Samples/";
-  std::string path      = sampleDir + name + ".wav";
-  data = readFromWaveFile(path.c_str(), numChannels, numFrames, iSampleRate);
-  if(data == nullptr) {
-  rsError("File not found");
-  return std::vector<double>();
-  }
-  */
-
-  // new - multiple sample directories supported:
-  //std::vector<std::string> sampleDirs 
-  //  = { "../../../../Data/Samples/", 
-  //  "../../../../Data/Samples/Elan/",
-  //  "../../../../Data/Samples/Misc/"};
 
   std::vector<std::string> sampleDirs = getSampleDirectories();
   for(size_t i = 0; i < sampleDirs.size(); i++) {
