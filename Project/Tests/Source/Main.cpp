@@ -10,6 +10,8 @@ ToDo:
  better: use the maximum distance between found peaks as the minimum distance between de-beated
  env datapoints
 -maybe factor out a meta-envelope extractor
+-the debeating may sometimes introduce a sort of glitch at the transient - maybe this is due to 
+ filtering the phases?
 
 -figure out, why the analysis may produce negative amplitudes for the DC component
 
@@ -199,11 +201,18 @@ int main (int /*argc*/, char* /*argv[]*/)
   //testDeBeating("Rhodes_F3");
 
 
-  testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 shorter", 175); 
+  //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 shorter", 175); 
   //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16 short",   175); 
   //testDeBeating("Rhodes Tuned F3 V12TX -16.4 10-17-16",         175);  // long sample
   //testDeBeating("Rhodes Tuned F#3 V14TX -12.1 1-12-17");
   //testDeBeating("Rhodes Tuned F#3 V14TX -12.1 1-12-17",   184);
+
+
+  //testDeBeating("Rhodes Tuned F#3 V10TX -20.5 1-12-17",   184);
+  //testDeBeating("Rhodes Tuned F#3 V10TX -20.5 1-12-17_96kHz",   184);
+
+  //Rhodes Tuned F#3 V10TX -20.5 1-12-17.wav
+
 
   // the long sample has a frequency glitch at the beginning
   // -pitch estimation finds 175 - well, it actually IS 175
@@ -317,9 +326,9 @@ int main (int /*argc*/, char* /*argv[]*/)
   //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
   //  "MutedMallets/(0037)DPan_MutedMalletsNorth`n=D2`tail=1");
 
-  //testEnvelopeMatching2(
-  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
-  //  "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1");
+  testEnvelopeMatching2(
+    "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+    "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1");
 
   //testEnvelopeMatching2(
   //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
