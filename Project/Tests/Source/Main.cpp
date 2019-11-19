@@ -194,6 +194,7 @@ int main (int /*argc*/, char* /*argv[]*/)
   //testDeBeating("BeatingSines");
 
   //testDeBeating("Rhodes_F3_Short");
+  testDeBeating("Rhodes_F3_Medium");
   // for partial 3, the meta-envelope is too short in rsEnvelopeExtractor<T>::connectPeaks
   // too see it, activate plotting in rsEnvelopeExtractor<T>::fillSparseAreas
   // ->try to come up with an artificial test signal that exposes this behavior
@@ -326,9 +327,13 @@ int main (int /*argc*/, char* /*argv[]*/)
   //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
   //  "MutedMallets/(0037)DPan_MutedMalletsNorth`n=D2`tail=1");
 
-  testEnvelopeMatching2(
-    "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
-    "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1");
+  //testEnvelopeMatching2(
+  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
+  //  "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1");
+
+  //testEnvelopeMatching2(    
+  //  "MutedMallets/(0039)DPan_MutedMalletsNorth`n=D2`tail=1",
+  //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3");
 
   //testEnvelopeMatching2(
   //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
