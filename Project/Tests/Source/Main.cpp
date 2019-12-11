@@ -195,6 +195,14 @@ int main (int /*argc*/, char* /*argv[]*/)
 
   //testDeBeating("Rhodes_F3_Short");
   testDeBeating("Rhodes_F3_Medium");
+  // problems:
+  // partial 0: amplitude may become negative (but maybe that's ok)
+  // partial 1: it doesn't de-beat - beating still present in output
+  //            maybe the max-distance setting is too small?
+  // partial 2: straight-line problem
+  // partial 3: straight line problem
+  // partial 4: harmonic drop out (problem in the anaylzer)
+
   // for partial 3, the meta-envelope is too short in rsEnvelopeExtractor<T>::connectPeaks
   // too see it, activate plotting in rsEnvelopeExtractor<T>::fillSparseAreas
   // ->try to come up with an artificial test signal that exposes this behavior
