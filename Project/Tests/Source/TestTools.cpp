@@ -52,8 +52,8 @@ std::vector<double> loadSample(const std::string& name, double* sampleRate = nul
 
   // copy data into std::vector and clean up memory:
   std::vector<double> v(numFrames);
-  RAPT::rsArray::copy(data[0], &v[0], numFrames);
-  MatrixTools::rsDeAllocateMatrix(data, numChannels, numFrames);
+  RAPT::rsArrayTools::copy(data[0], &v[0], numFrames);
+  RAPT::rsMatrixTools::deallocateMatrix(data, numChannels, numFrames);
   return v;
 
   // todo: rename rosic::rsArray ...maybe to rsDynamicArray..or remove the class from rosic or 
@@ -67,7 +67,7 @@ inline std::vector<T> rsExtractRange(std::vector<T>& v, size_t first, size_t las
   rsAssert(last >= first && last < v.size(), "invalid range");
   size_t N = last - first + 1;
   std::vector<T> r(N);
-  RAPT::rsArray::copyBuffer(&v[first], &r[0], (int) N);
+  RAPT::rsArrayTools::copyBuffer(&v[first], &r[0], (int) N);
   return r;
 }
 // maybe move to rapt or rosic
