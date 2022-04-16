@@ -1,0 +1,13 @@
+
+*.pk
+*.zip
+*.tlog
+*.log
+*.obj
+*.exe
+*.pdb
+*.7z
+*.db
+Project/Tests/Builds/VisualStudio2019/Tests_ConsoleApp.vcxproj.user
+*.user
+*.sdf

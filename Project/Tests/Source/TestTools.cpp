@@ -136,3 +136,11 @@ void plotPhaseTrajectories(const std::string& name, std::vector<int> indices)
   double fs;
   std::vector<double> x = loadSample(name, &fs);
 }
+
+void testTimeWarping(const std::string& name, double f0 = 0)
+{
+  double fs;
+  std::vector<double> x = loadSample(name, &fs);
+  testTimeWarping1(x, fs, f0); 
+}
+

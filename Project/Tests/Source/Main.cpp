@@ -70,13 +70,13 @@ int main (int /*argc*/, char* /*argv[]*/)
 
   // sounds for which harmonic resynthesis works:
 
-  //testHarmonicResynthesis("Vla_CE.L (2)");
+  testHarmonicResynthesis("Vla_CE.L (2)");
   // Hamming leaves some harmonic content in the residual, with Blackman it's purely noisy
 
 
   //testHarmonicResynthesis("flute-C-octave0");
 
-  //testHarmonicResynthesis("flute-C-octave1");
+  testHarmonicResynthesis("flute-C-octave1");
   // When passing the signal to an aggressive lowpass before analysis/resynthesis, the 
   // resynthesized signal will nevertheless show high-freq content in the area that has been 
   // removed. This is not due to the sinc-interpolator (the pitch-flattened signal looks fine) and
@@ -293,10 +293,6 @@ int main (int /*argc*/, char* /*argv[]*/)
   //  less with these settings
   // -setting the fundamental manually improves it - but there's still buzz
 
-
-
-
-
   //testHarmonicResynthesis("bell_light_1");
   // very bad artifacts - cycle-lengths alternate between 40 and 50 cycles - but it's an inharmonic
   // spectrum (lowest freq around 1 kHz) ..maybe try more harmonic sounds first..
@@ -357,7 +353,11 @@ int main (int /*argc*/, char* /*argv[]*/)
   // plotFreqEnvelopes(minPartial, maxPartial)
 
 
+  testTimeWarping("TriVibratoA2", 220);  
+
   // todo: check for memleaks (maybe move the memleak checking code to rosic)
+
+
 
     
   return 0;
