@@ -11,3 +11,7 @@
 Project/Tests/Builds/VisualStudio2019/Tests_ConsoleApp.vcxproj.user
 *.user
 *.sdf
+*.opendb
+*.ipch
+*.ilk
+Project/Tests/Builds/VisualStudio2019/.vs/Tests/v16/.suo
