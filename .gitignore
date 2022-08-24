@@ -9,6 +9,7 @@
 *.7z
 *.db
 Project/Tests/Builds/VisualStudio2019/Tests_ConsoleApp.vcxproj.user
+Project/Tests/Builds/VisualStudio2019/enc_temp_folder
 *.user
 *.sdf
 *.opendb

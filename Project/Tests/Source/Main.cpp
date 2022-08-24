@@ -355,7 +355,13 @@ int main (int /*argc*/, char* /*argv[]*/)
 
   testTimeWarping("TriVibratoA2", 220);  
 
-  // todo: check for memleaks (maybe move the memleak checking code to rosic)
+  // ToDo: 
+  // -Check for memleaks (maybe move the memleak checking code to rosic)
+  // -Write the output wavefiles (i.e. resynthesized signals etc.) into some special folder that 
+  //  can be added to .gitignore such that github-desktop doesn't always want to add them to the 
+  //  repo. We don't want to ignore .wav files in general because the repo as a whole has 
+  //  legitimate .wav file content, so an extra folder seems suitable...or: maybe we can ignore 
+  //  .wav files only in specific folders? Is that possible? Maybe with some sort of regex?
 
 
 
