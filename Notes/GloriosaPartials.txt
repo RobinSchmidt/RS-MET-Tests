@@ -1,0 +1,42 @@
+A table of partial frequencies and amplitudes of the famous Gloriosa bell in Erfurt's cathedral.
+
+Measurements were taken from
+https://www.youtube.com/watch?v=9ssM8cMYmbQ
+from around 2:55, selecting the whole range where the bell rings and inspecting it with the spectrum
+plot in Audacity using the cursor wo figure out the frequencies. They are somewhat inexact, but we 
+intend to sort of "quantize" them to equal temperament or to just intonation anyway.
+
+Freq (Hz)   Note    Level (dB)
+  38        D#1     -66.9
+  48        G1      -64.9
+  81        E2      -37.7
+ 130        C3      -57.9
+ 168        E3      -24.9
+ 200        G3      -20.8
+ 243        B3      -35.4
+ 265        C4      -54.3
+ 330        E4      -27.9
+ 417        G#4     -36.4
+ 489        B4      -32.8
+ 533        C5      -43.6
+ 673        E5      -32.1
+ 875        A5      -35.0
+1089        C#6     -42.7
+1313        E6      -48.2
+1544        G6      -49.7
+1772        A6      -62.3
+2013        B6      -63.4
+2248        C#7     -62.5
+2491        D#7     -69.7
+2716        F7      -63.5     ...maybe retune to E7?
+2944        F#7     -75.2
+3185        G7      -74.7
+3420        G#7     -77.9
+3432        A7      -86.5     ...maybe remove
+3623        A7      -77.2
+3885        B7      -85.0
+
+
+ToDo:
+-Analyze bells from here from 2:32
+ https://www.youtube.com/watch?v=20CDlSJG7cI
