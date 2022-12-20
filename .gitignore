@@ -15,4 +15,6 @@ Project/Tests/Builds/VisualStudio2019/enc_temp_folder
 *.opendb
 *.ipch
 *.ilk
+
 Project/Tests/Builds/VisualStudio2019/.vs/Tests/v16/.suo
+Project/Tests/Builds/VisualStudio2019/x64/
