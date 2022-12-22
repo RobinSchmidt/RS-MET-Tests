@@ -108,6 +108,13 @@ void testModalResynthesis(const std::string& name, double f0 = 0)
   testModalResynthesis(name, x, fs, f0); 
 }
 
+void testModalResynthesis2(const std::string& name, double f0 = 0)
+{
+  double fs;
+  std::vector<double> x = loadSample(name, &fs);
+  testModalResynthesis2(name, x, fs, f0); 
+}
+
 void testDeBeating(const std::string& name, double f0 = 0)
 {
   double fs;

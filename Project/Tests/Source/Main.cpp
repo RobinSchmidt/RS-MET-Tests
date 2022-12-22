@@ -70,13 +70,13 @@ int main (int /*argc*/, char* /*argv[]*/)
 
   // sounds for which harmonic resynthesis works:
 
-  testHarmonicResynthesis("Vla_CE.L (2)");
+  //testHarmonicResynthesis("Vla_CE.L (2)");
   // Hamming leaves some harmonic content in the residual, with Blackman it's purely noisy
 
 
   //testHarmonicResynthesis("flute-C-octave0");
 
-  testHarmonicResynthesis("flute-C-octave1");
+  //testHarmonicResynthesis("flute-C-octave1");
   // When passing the signal to an aggressive lowpass before analysis/resynthesis, the 
   // resynthesized signal will nevertheless show high-freq content in the area that has been 
   // removed. This is not due to the sinc-interpolator (the pitch-flattened signal looks fine) and
@@ -183,6 +183,14 @@ int main (int /*argc*/, char* /*argv[]*/)
   //testHarmonicResynthesis("Rhodes_F3_Short");
   //testHarmonicResynthesis("Rhodes_F3");
 
+
+  //testModalResynthesis("Gloriosa1"); 
+  // The resynthesized signal is way too short!
+
+  testModalResynthesis2("Gloriosa1");
+
+
+
   //testModalResynthesis("Rhodes_F3_Short");
   // it seems like the 9th harmonic (index 8 after removing DC) has a much too low amplitude in the
   // resynthesized signal - there seems to be an estimation error - this harmonic seems to have a 
@@ -194,7 +202,7 @@ int main (int /*argc*/, char* /*argv[]*/)
   //testDeBeating("BeatingSines");
 
   //testDeBeating("Rhodes_F3_Short");
-  testDeBeating("Rhodes_F3_Medium");
+  //testDeBeating("Rhodes_F3_Medium");
   // problems:
   // partial 0: amplitude may become negative (but maybe that's ok)
   // partial 1: it doesn't de-beat - beating still present in output
@@ -347,13 +355,13 @@ int main (int /*argc*/, char* /*argv[]*/)
   //  "MutedMallets/(0042)DPan_MutedMalletsNorth`n=D2`tail=3",
   //  "MutedMallets/(0031)DPan_MutedMalletsNorth`n=D2`tail=1");
   
-
   //testHarmonicResynthesis("Twang");
   // maybe make a function visualizeSineComponents or: plotAmpEnvelopes(minPartial, maxPartial),
   // plotFreqEnvelopes(minPartial, maxPartial)
 
+  //testTimeWarping("TriVibratoA2", 220);  
 
-  testTimeWarping("TriVibratoA2", 220);  
+
 
   // ToDo: 
   // -Check for memleaks (maybe move the memleak checking code to rosic)
